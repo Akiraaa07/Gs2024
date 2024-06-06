@@ -19,14 +19,7 @@ function ServiceCard({ iconUrl, title, description, action }: IProps) {
       </div>
       <p className="text-[2.25rem] font-[700]">{title}</p>
       <p className="text-normal">{description}</p>
-      <button
-        className="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-none cursor-pointer w-[10.125rem]"
-        onClick={action}
-      >
-        Saber Mais
-      </button>
     </div>
   );
 }
-
 export default ServiceCard;

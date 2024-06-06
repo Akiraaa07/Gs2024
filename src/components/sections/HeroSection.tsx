@@ -15,9 +15,8 @@ function HeroSection() {
         <div className="flex gap-[1.75rem] items-center mt-[3rem]">
           <button
             className="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-none w-[10.125rem]"
-            type="button"
-          >
-            Saiba Mais
+            type="button">
+            <a href="https://voiceoftheoceans.com/" target="_blank">Saiba Mais</a>
           </button>
         </div>
       </div>
