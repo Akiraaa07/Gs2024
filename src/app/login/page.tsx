@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import NavBar from "@/components/common/NavBar";
+import FooterSection from "@/components/sections/FooterSection";
 
 const LoginPage: React.FC = () => {
   // Define o estado inicial para os dados do formulário
@@ -74,52 +75,57 @@ const LoginPage: React.FC = () => {
 
   // Renderiza a interface
   return (
-    <section id="Login" className="h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="md:flex">
-          <div className="w-full md:w-1/2 px-8 py-12">
-            <div className="text-center mb-8">
-              <h1 className="text-blue-900 text-3xl mb-4">Faça login na</h1>
-              <h2 className="text-blue-900 text-3xl mb-8">AquaPredict Technologies</h2>
-              <p className="py-4 text-gray-700">Todo tipo de conteúdo. Tudo para te ajudar a crescer.</p>
+    <>
+      <NavBar />
+      <section id="Login" className="h-screen flex items-center justify-center bg-gray-100">
+        <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="md:flex">
+            <div className="w-full md:w-1/2 px-8 py-12">
+              <div className="text-center mb-8">
+                <h1 className="text-blue-900 text-3xl mb-4">Faça login na</h1>
+                <h2 className="text-blue-900 text-3xl mb-8">AquaPredict Technologies</h2>
+                <p className="py-4 text-gray-700">Todo tipo de conteúdo. Tudo para te ajudar a crescer.</p>
+              </div>
+              <div className="px-8">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-4">
+                    <label htmlFor="nomeCompleto" className="block font-bold mb-1">Nome Completo:</label>
+                    <input type="text" id="nomeCompleto" placeholder="Nome Completo" value={formData.nomeCompleto} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="email" className="block font-bold mb-1">E-mail:</label>
+                    <input type="email" id="email" placeholder="E-mail" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="contato" className="block font-bold mb-1">Contato:</label>
+                    <input type="text" id="contato" placeholder="Contato" value={formData.contato} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="cep" className="block font-bold mb-1">CEP:</label>
+                    <input type="text" id="cep" placeholder="CEP" value={formData.cep} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="nomeGit" className="block font-bold mb-1">Nome Git:</label>
+                    <input type="text" id="nomeGit" placeholder="Nome Git" value={formData.nomeGit} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
+                  </div>
+                  <div>
+                    <input type="submit" value="Enviar" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300" />
+                  </div>
+                </form>
+                {/* Exibe a mensagem de feedback se houver */}
+                {message && <p className="mt-4 text-center text-gray-700">{message}</p>}
+              </div>
             </div>
-            <div className="px-8">
-              <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <label htmlFor="nomeCompleto" className="block font-bold mb-1">Nome Completo:</label>
-                  <input type="text" id="nomeCompleto" placeholder="Nome Completo" value={formData.nomeCompleto} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="email" className="block font-bold mb-1">E-mail:</label>
-                  <input type="email" id="email" placeholder="E-mail" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="contato" className="block font-bold mb-1">Contato:</label>
-                  <input type="text" id="contato" placeholder="Contato" value={formData.contato} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="cep" className="block font-bold mb-1">CEP:</label>
-                  <input type="text" id="cep" placeholder="CEP" value={formData.cep} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="nomeGit" className="block font-bold mb-1">Nome Git:</label>
-                  <input type="text" id="nomeGit" placeholder="Nome Git" value={formData.nomeGit} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
-                </div>
-                <div>
-                  <input type="submit" value="Enviar" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300" />
-                </div>
-              </form>
-              {/* Exibe a mensagem de feedback se houver */}
-              {message && <p className="mt-4 text-center text-gray-700">{message}</p>}
+            {/* Lado direito */}
+            <div className="w-full md:w-1/2 flex justify-center items-center">
+            <img src="/images/Logings.png" alt="imagem de Welcome" className="w-[10rem] md:w-full"
+          />
             </div>
-          </div>
-          {/* Lado direito */}
-          <div className="w-full md:w-1/2 flex justify-center items-center">
-            {/* Aqui você pode adicionar uma imagem ou qualquer outro conteúdo */}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <FooterSection />
+    </>
   );
 };
 
