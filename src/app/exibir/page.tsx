@@ -1,68 +1,90 @@
-'use client';
+'use client'
 
+import React, { useState, useEffect } from 'react';
 import NavBar from "@/components/common/NavBar";
 import FooterSection from "@/components/sections/FooterSection";
 
-// Mantenha o resto do código como está
-import React, { useState, useEffect } from 'react';
-
-interface User {
-  id: number;
-  Nome: string;
-  Email: string;
-  Contato: string;
-  Cep: string;
-  Login: string;
-}
-
 const UsersPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [userId, setUserId] = useState<number | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const id = parseInt(event.target.value);
+    setUserId(isNaN(id) ? null : id);
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchUser = async () => {
+      if (userId === null) {
+        return;
+      }
+      setLoading(true);
+      setError(null);
       try {
-        const res = await fetch('http://127.0.0.1:8000/listar_usuarios');
+        const res = await fetch(`http://localhost:8080/usuario/${userId}`);
         if (!res.ok) {
-          throw new Error('Erro ao buscar usuários');
+          throw new Error('Usuário não encontrado');
         }
         const data = await res.json();
-        setUsers(data);
+        setUser(data);
       } catch (error) {
-        console.error('Erro ao buscar usuários:', error);
-        setError('Erro ao buscar usuários. Por favor, tente novamente mais tarde.');
+        console.error('Erro ao buscar usuário:', error);
+        setError('Usuário não encontrado');
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchUsers();
-  }, []);
+    fetchUser();
+  }, [userId]);
 
   return (
-    <div>
-      {/* Inclua o NavBar aqui */}
+    <>
       <NavBar />
-
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center font-primary">
         <div className="bg-white p-6 rounded-lg shadow-md max-w-md w-full">
-          <h1 className="text-3xl font-bold text-primary mb-4">Usuários Cadastrados</h1>
-          {error && <p className="text-red-500 mb-4">{error}</p>}
-          <ul>
-            {users.map((user) => (
-              <li key={user.id} className="mb-4">
-                <p className="text-lg text-gray-800 font-bold">Nome: {user.Nome}</p>
-                <p className="text-gray-700">Cargo: {user.Email}</p>
-                <p className="text-gray-700">Email: {user.Contato}</p>
-                <p className="text-gray-700">Contato: {user.Cep}</p>
-                <p className="text-gray-700">Empresa: {user.Login}</p>
-              </li>
-            ))}
-          </ul>
+          <h1 className="text-3xl font-bold text-primary mb-4">Detalhes do Usuário</h1>
+          <div className="mb-4">
+            <label htmlFor="userId" className="block text-gray-700 font-bold mb-2">Digite o ID do Usuário:</label>
+            <input
+              type="number"
+              id="userId"
+              value={userId || ''}
+              onChange={handleIdChange}
+              placeholder="Ex: 1"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+
+          {loading && <p>Carregando...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+
+          {user && (
+            <div>
+              <p className="text-lg font-bold text-gray-800 mb-2">{user.NOME}</p>
+              <div className="flex flex-wrap">
+                <div className="w-full sm:w-1/2 mb-2">
+                  <p className="text-sm text-gray-600">Email: {user.EMAIL}</p>
+                </div>
+                <div className="w-full sm:w-1/2 mb-2">
+                  <p className="text-sm text-gray-600">Contato: {user.CONTATO}</p>
+                </div>
+                <div className="w-full sm:w-1/2 mb-2">
+                  <p className="text-sm text-gray-600">CEP: {user.CEP}</p>
+                </div>
+                <div className="w-full sm:w-1/2 mb-2">
+                  <p className="text-sm text-gray-600">Login: {user.LOGIN}</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Inclua o FooterSection aqui */}
       <FooterSection />
-    </div>
+    </>
   );
 };
 

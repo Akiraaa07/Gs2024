@@ -19,14 +19,14 @@ function NavBar() {
             <p className="hover:text-primary cursor-pointer flex items-center gap-2 font-[500] text-gray">
               <Link href="/viacep">
                 <span className="flex items-center gap-2 font-[500] text-gray">
-                  Via Cep
+                  Api Via Cep
                 </span>
               </Link>
             </p>
             <p className="hover:text-primary cursor-pointer flex items-center gap-2 font-[500] text-gray">
-              <Link href="/nosso-app">
+              <Link href="/git">
                 <span className="flex items-center gap-2 font-[500] text-gray">
-                  Nosso app
+                  Api Git Hub
                 </span>
               </Link>
             </p>

@@ -1,21 +1,46 @@
+/* Importação de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Aplicação de Estilos Globais para a Fonte Ageo */
+body {
+  font-family: 'AgeoPersonalUse', sans-serif;
+}
+
+/* Classes Específicas para Fontes com Diferentes Pesos */
+.font-primary {
+  font-family: 'AgeoPersonalUse', sans-serif;
+}
+
+.font-bold {
+  font-family: 'AgeoPersonalUse-Bold', sans-serif;
+}
+
+.font-extra-bold {
+  font-family: 'AgeoPersonalUse-ExtraBold', sans-serif;
+}
+
+.font-medium {
+  font-family: 'AgeoPersonalUse-Medium', sans-serif;
+}
+
+/* Exemplo de como você pode estilizar as sombras */
 .service-card-shadow {
   box-shadow: 0px 2.767px 2.214px 0px rgba(0, 0, 0, 0.02),
-    0px 6.65px 5.32px 0px rgba(0, 0, 0, 0.03),
-    0px 12.522px 10.017px 0px rgba(0, 0, 0, 0.04),
-    0px 22.336px 17.869px 0px rgba(0, 0, 0, 0.04),
-    0px 41.778px 33.422px 0px rgba(0, 0, 0, 0.05),
-    0px 100px 80px 0px rgba(0, 0, 0, 0.07);
+              0px 6.65px 5.32px 0px rgba(0, 0, 0, 0.03),
+              0px 12.522px 10.017px 0px rgba(0, 0, 0, 0.04),
+              0px 22.336px 17.869px 0px rgba(0, 0, 0, 0.04),
+              0px 41.778px 33.422px 0px rgba(0, 0, 0, 0.05),
+              0px 100px 80px 0px rgba(0, 0, 0, 0.07);
 }
 
 .newsletter-box-shadow {
   box-shadow: 0px 2.767px 2.214px 0px rgba(0, 0, 0, 0.02),
-    0px 6.65px 5.32px 0px rgba(0, 0, 0, 0.03),
-    0px 12.522px 10.017px 0px rgba(0, 0, 0, 0.04),
-    0px 22.336px 17.869px 0px rgba(0, 0, 0, 0.04),
-    0px 41.778px 33.422px 0px rgba(0, 0, 0, 0.05),
-    0px 100px 80px 0px rgba(0, 0, 0, 0.07);
+              0px 6.65px 5.32px 0px rgba(0, 0, 0, 0.03),
+              0px 12.522px 10.017px 0px rgba(0, 0, 0, 0.04),
+              0px 22.336px 17.869px 0px rgba(0, 0, 0, 0.04),
+              0px 41.778px 33.422px 0px rgba(0, 0, 0, 0.05),
+              0px 100px 80px 0px rgba(0, 0, 0, 0.07);
 }
+

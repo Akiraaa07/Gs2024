@@ -18,10 +18,9 @@ const UserCepPage = () => {
   const fetchAddress = async () => {
     try {
       const res = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-      if (!res.data.cep) {
+      if (res.data.erro) {
         throw new Error('CEP não encontrado');
       }
-      console.log(res.data); // Verifique os dados
       setAddress(res.data);
       setError(null);
     } catch (error) {
@@ -43,7 +42,7 @@ const UserCepPage = () => {
     <React.Fragment>
       <NavBar />
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-lg shadow-md max-w-md w-full">
+        <div className="bg-white p-6 rounded-lg shadow-md max-w-md w-full font-primary">
           <h1 className="text-3xl font-bold text-primary mb-4">Consulta de CEP</h1>
           <div className="mb-4">
             <label htmlFor="cep" className="block text-gray-700 font-bold mb-2">Digite o CEP:</label>
@@ -63,19 +62,19 @@ const UserCepPage = () => {
             <div>
               <p className="text-lg text-gray-800 font-bold mb-2">Endereço:</p>
               <p className="text-gray-700" style={{ color: 'black', fontSize: '16px', fontWeight: 'normal' }}>
-                <strong>CEP:</strong> {address?.cep ?? 'N/A'}
+                <strong>CEP:</strong> {address.cep ?? 'N/A'}
               </p>
               <p className="text-gray-700" style={{ color: 'black', fontSize: '16px', fontWeight: 'normal' }}>
-                <strong>Logradouro:</strong> {address?.logradouro ?? 'N/A'}
+                <strong>Logradouro:</strong> {address.logradouro ?? 'N/A'}
               </p>
               <p className="text-gray-700" style={{ color: 'black', fontSize: '16px', fontWeight: 'normal' }}>
-                <strong>Complemento:</strong> {address?.complemento ?? 'N/A'}
+                <strong>Complemento:</strong> {address.complemento ?? 'N/A'}
               </p>
               <p className="text-gray-700" style={{ color: 'black', fontSize: '16px', fontWeight: 'normal' }}>
-                <strong>Bairro:</strong> {address?.bairro ?? 'N/A'}
+                <strong>Bairro:</strong> {address.bairro ?? 'N/A'}
               </p>
               <p className="text-gray-700" style={{ color: 'black', fontSize: '16px', fontWeight: 'normal' }}>
-                <strong>Cidade:</strong> {address?.localidade ?? 'N/A'} - {address?.uf ?? 'N/A'}
+                <strong>Cidade:</strong> {address.localidade ?? 'N/A'} - {address.uf ?? 'N/A'}
               </p>
             </div>
           )}
