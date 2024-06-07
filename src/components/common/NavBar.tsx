@@ -17,9 +17,9 @@ function NavBar() {
               </Link>
             </p>
             <p className="hover:text-primary cursor-pointer flex items-center gap-2 font-[500] text-gray">
-              <Link href="/TeamSection">
+              <Link href="/viacep">
                 <span className="flex items-center gap-2 font-[500] text-gray">
-                  Sobre
+                  Via Cep
                 </span>
               </Link>
             </p>
@@ -31,9 +31,9 @@ function NavBar() {
               </Link>
             </p>
             <p className="hover:text-primary cursor-pointer flex items-center gap-2 font-[500] text-gray">
-              <Link href="/contacts">
+              <Link href="/exibir">
                 <span className="flex items-center gap-2 font-[500] text-gray">
-                  Contacts
+                  Exibir Usuarios
                 </span>
               </Link>
             </p>

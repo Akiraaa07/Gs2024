@@ -6,7 +6,7 @@ function TeamSection() {
   const teamData = [
     {
       id: 0,
-      imageUrl: "/images/eu.jpg",
+      imageUrl: "/images/Igorgs.jpg",
       name: "Igor Akira",
       profession: "Desenvolvedor",
       instagramLink: "https://www.instagram.com/akira.igoor/",

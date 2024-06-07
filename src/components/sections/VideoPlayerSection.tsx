@@ -7,7 +7,7 @@ function VideoPlayerSection() {
         <p className="text-lightBlue font-bold text-2xl">
           Protegendo Nosso Oceano
         </p>
-        <p className="text-customLightGray text-[1.2rem] mt-4 mb-8">
+        <p className="text-black text-[1.2rem] mt-4 mb-8">
           Aprenda sobre as iniciativas e esforços em andamento para preservar os
           nossos oceanos e garantir um futuro sustentável para as próximas
           gerações.
