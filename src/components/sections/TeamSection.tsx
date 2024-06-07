@@ -8,21 +8,31 @@ function TeamSection() {
       id: 0,
       imageUrl: "/images/eu.jpg",
       name: "Igor Akira",
-      profession: "Desenvolvedor"
+      profession: "Desenvolvedor",
+      instagramLink: "https://www.instagram.com/akira.igoor/",
+      githubLink: "https://github.com/Akiraaa07",
+      linkedinLink: "https://www.linkedin.com/in/igor-akira-tateishi-6a812627a/"
     },
     {
       id: 1,
       imageUrl: "/images/Nicola.jpg",
       name: "Nicola Monte",
-      profession: "Desenvolvedor"
+      profession: "Desenvolvedor",
+      instagramLink: "https://www.instagram.com/nicola.aa",
+      githubLink: "https://github.com/Nicola3423",
+      linkedinLink: "https://www.linkedin.com/in/nicola-monte-cravo-garofalo-3757902b0/"
     },
     {
       id: 2,
       imageUrl: "/images/Willyam.jpeg",
       name: "Willyam Santos",
-      profession: "Desenvolvedor"
+      profession: "Desenvolvedor",
+      instagramLink: "https://www.instagram.com/santoswillyam/",
+      githubLink: "https://github.com/Will-0101",
+      linkedinLink: "https://www.linkedin.com/in/willyam-santos/"
     },
   ];
+
   return (
     <section className="mt-[9rem]">
       <Header title="Desenvolvedores" subtitle="Nossa Equipe" />
@@ -33,6 +43,9 @@ function TeamSection() {
             imageUrl={team.imageUrl}
             name={team.name}
             profession={team.profession}
+            instagramLink={team.instagramLink}
+            githubLink={team.githubLink}
+            linkedinLink={team.linkedinLink}
           />
         ))}
       </div>
