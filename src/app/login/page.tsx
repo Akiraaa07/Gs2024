@@ -7,11 +7,11 @@ import FooterSection from "@/components/sections/FooterSection";
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState({
-    nomeCompleto: '',
+    nome: '',     // Ajustado de nomeCompleto para nome
     email: '',
     contato: '',
     cep: '',
-    nomeGit: '',
+    login: '',    // Ajustado de nomeGit para login
   });
 
   const [message, setMessage] = useState('');
@@ -28,8 +28,19 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setMessage('');
 
+    // Converte `contato` e `cep` para números
+    const dataToSend = {
+      ...formData,
+      contato: parseInt(formData.contato),
+      cep: parseInt(formData.cep)
+    };
+
     try {
-      const response = await axios.post('http://localhost:8080/usuario', formData);
+      const response = await axios.post('http://localhost:8080/', dataToSend, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       console.log('Dados enviados com sucesso:', response.data);
       setMessage('Dados enviados com sucesso!');
     } catch (error) {
@@ -52,11 +63,11 @@ const LoginPage: React.FC = () => {
               </div>
               <div className="px-8">
                 <form onSubmit={handleSubmit}>
-                  <FormField id="nomeCompleto" label="Nome Completo" placeholder="Nome Completo" value={formData.nomeCompleto} onChange={handleChange} />
+                  <FormField id="nome" label="Nome Completo" placeholder="Nome Completo" value={formData.nome} onChange={handleChange} />
                   <FormField id="email" label="E-mail" placeholder="E-mail" value={formData.email} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
                   <FormField id="contato" label="Contato" placeholder="Contato" value={formData.contato} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
                   <FormField id="cep" label="CEP" placeholder="CEP" value={formData.cep} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
-                  <FormField id="nomeGit" label="Nome Git" placeholder="Nome Git" value={formData.nomeGit} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
+                  <FormField id="login" label="Nome Git" placeholder="Nome Git" value={formData.login} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
                   <div>
                     <input type="submit" value="Enviar" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300" />
                   </div>
