@@ -7,11 +7,11 @@ import FooterSection from "@/components/sections/FooterSection";
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState({
-    nome: '',     // Ajustado de nomeCompleto para nome
-    email: '',
-    contato: '',
-    cep: '',
-    login: '',    // Ajustado de nomeGit para login
+    NOME: '',
+    EMAIL: '',
+    CONTATO: '',
+    CEP: '',
+    LOGIN: '',
   });
 
   const [message, setMessage] = useState('');
@@ -28,15 +28,23 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setMessage('');
 
-    // Converte `contato` e `cep` para números
+    // Verifica se os valores são números válidos
+    const contatoNum = parseInt(formData.CONTATO);
+    const cepNum = parseInt(formData.CEP);
+
+    if (isNaN(contatoNum) || isNaN(cepNum)) {
+      setMessage('Contato e CEP devem ser números.');
+      return;
+    }
+
     const dataToSend = {
       ...formData,
-      contato: parseInt(formData.contato),
-      cep: parseInt(formData.cep)
+      contato: contatoNum,
+      cep: cepNum
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/', dataToSend, {
+      const response = await axios.post('http://localhost:8080/usuario', dataToSend, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -63,11 +71,11 @@ const LoginPage: React.FC = () => {
               </div>
               <div className="px-8">
                 <form onSubmit={handleSubmit}>
-                  <FormField id="nome" label="Nome Completo" placeholder="Nome Completo" value={formData.nome} onChange={handleChange} />
-                  <FormField id="email" label="E-mail" placeholder="E-mail" value={formData.email} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
-                  <FormField id="contato" label="Contato" placeholder="Contato" value={formData.contato} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
-                  <FormField id="cep" label="CEP" placeholder="CEP" value={formData.cep} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
-                  <FormField id="login" label="Nome Git" placeholder="Nome Git" value={formData.login} onChange={handleChange} style={{ fontFamily: 'Arial, sans-serif' }} />
+                  <FormField id="NOME" label="Nome Completo" placeholder="Nome Completo" value={formData.NOME} onChange={handleChange} />
+                  <FormField id="EMAIL" label="E-mail" placeholder="E-mail" value={formData.EMAIL} onChange={handleChange} />
+                  <FormField id="CONTATO" label="Contato" placeholder="Contato" value={formData.CONTATO} onChange={handleChange} />
+                  <FormField id="CEP" label="CEP" placeholder="CEP" value={formData.CEP} onChange={handleChange} />
+                  <FormField id="LOGIN" label="Nome Git" placeholder="Nome Git" value={formData.LOGIN} onChange={handleChange} />
                   <div>
                     <input type="submit" value="Enviar" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer transition duration-300" />
                   </div>
@@ -86,18 +94,17 @@ const LoginPage: React.FC = () => {
   );
 };
 
-// Componente para campo de formulário
 const FormField: React.FC<{
   id: string;
   label: string;
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  style?: React.CSSProperties; // Adicionado para aceitar estilos personalizados
+  style?: React.CSSProperties;
 }> = ({ id, label, placeholder, value, onChange, style }) => (
   <div className="mb-4">
     <label htmlFor={id} className="block font-bold mb-1">{label}:</label>
-    <input type="text" id={id} placeholder={placeholder} value={value} onChange={onChange} style={style} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500" />
+    <input type="text" id={id} placeholder={placeholder} value={value} onChange={onChange} style={style} className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:border-blue-500 font-primary" />
   </div>
 );
 
